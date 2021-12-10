@@ -42,7 +42,7 @@ def approxIntegral(a,b,fn, N=10000000):
 def approxPi2(N=100000000):
     quarterPi = 0
     add = True
-    for i in range(1,N+1,2):
+    for i in range(1,2*N+1,2):
         if add:
             quarterPi += 1/i
         else:
@@ -59,7 +59,7 @@ def approxAtan(x, N=10000000):
         raise ValueError("only applicable for x: -1 to 1")
     add = True
     y = 0
-    for i in range(1,N+1,2):
+    for i in range(1,2*N+1,2):
         if add:
             y += x**i/i
         else:
