@@ -1,12 +1,12 @@
 from random import uniform
-from math import atan
+from math import atan, sqrt
 
-# monte carlo
+# monte carlo approximation of pi via euclidean geometry
 # n - (optional) number of samples
 def approxPi(N=4000000):
     insideCircle = 0
     R = 1 # const
-    RSQ = 1**2
+    RSQ = R**2
     for _ in range(N):
         xSq = uniform(0,R)**2
         ySq = uniform(0,R)**2
@@ -19,7 +19,6 @@ def approxPi(N=4000000):
 # in range a -> b
 # n - (optional) number of samples
 def approxIntegral(a,b,fn, N=10000000):
-    sign = 1
     lessThan = 0
     ymin = fn(a)
     ymax = fn(b)
@@ -33,10 +32,8 @@ def approxIntegral(a,b,fn, N=10000000):
             lessThan +=1
     constArea = ymin*(b-a)
     unkArea = (ymax-ymin)*(b-a)*(lessThan/N)
-    return (constArea+unkArea)*sign
+    return (constArea+unkArea)
     
-    
-
 # Leibniz formula (4 * arctan(1) = pi)
 # N - (optional) number of iterations
 def approxPi2(N=100000000):
@@ -73,6 +70,7 @@ def addAtan(x0,x1):
     return atan(newX)
 
 def demo():
+    print("***-->>> Function Demo <<<---***")
     print(f"Monte Carlo approximation of π: {approxPi()}")
     print(f"Monte Carlo integration (4√(1-x²) approximation of π:", approxIntegral(0,1,lambda x: sqrt(1-x**2))*4)
     print(f"Leibniz approximation of π: {approxPi2()}")
