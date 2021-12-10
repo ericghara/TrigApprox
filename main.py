@@ -2,6 +2,7 @@ from random import uniform
 from math import atan, sqrt
 
 # monte carlo approximation of pi via euclidean geometry
+#
 # N - (optional) number of samples
 def approxPi(N=4000000):
     insideCircle = 0
@@ -17,6 +18,7 @@ def approxPi(N=4000000):
 # monte carlo integration
 # f(a) must be a local min or max and f(b) must be a local min or max
 # in range from a to b
+#
 # a - start of integration range
 # b - end of integration range
 # fn - the function to integrate. It must be a single variable function
@@ -37,7 +39,9 @@ def approxIntegral(a,b,fn, N=10000000):
     unkArea = (ymax-ymin)*(b-a)*(lessThan/N)
     return (constArea+unkArea)
     
-# Leibniz formula (4 * arctan(1) = pi)
+# Leibniz formula approximates 4 * arctan(1),
+# which ≡ pi
+#
 # N - (optional) number of iterations
 def approxPi2(N=100000000):
     quarterPi = 0
@@ -52,6 +56,7 @@ def approxPi2(N=100000000):
 
 # simmilar to approxPi2 uses related Leibniz-Madhava series. Only
 # applicable for calculating arctan of angles -1 to 1 (radians).
+# 
 # x - angle in radians
 # N - (optional) number of iterations
 def approxAtan(x, N=10000000):
