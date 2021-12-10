@@ -24,7 +24,7 @@ def approxPi(N=4000000):
 # fn - the function to integrate. It must be a single variable function
 # N - (optional) number of samples
 def approxIntegral(a,b,fn, N=10000000):
-    lessThan = 0
+    lessThanfx = 0
     ymin = fn(a)
     ymax = fn(b)
     if ymin > ymax:
@@ -32,12 +32,12 @@ def approxIntegral(a,b,fn, N=10000000):
     for _ in range(N):
         y = uniform(ymin,ymax)
         x = uniform(a,b)
-        fx = fn(x)
-        if fx > y:
+        if fn(x) > y:
             lessThan +=1
-    constArea = ymin*(b-a)
-    unkArea = (ymax-ymin)*(b-a)*(lessThan/N)
-    return (constArea+unkArea)
+    p = lessThanfx / N # probability distribution
+    constArea = ymin*(b-a) # region less than f(x) over a, b with 100% probability
+    dynamicArea = (ymax-ymin)*(b-a)*p # area of unknown region calculated from p
+    return constArea+dynamicArea
     
 # Leibniz formula approximates 4 * arctan(1),
 # which ≡ pi
