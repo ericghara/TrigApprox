@@ -2,7 +2,7 @@ from random import uniform
 from math import atan, sqrt
 
 # monte carlo approximation of pi via euclidean geometry
-# n - (optional) number of samples
+# N - (optional) number of samples
 def approxPi(N=4000000):
     insideCircle = 0
     R = 1 # const
@@ -16,8 +16,11 @@ def approxPi(N=4000000):
 
 # monte carlo integration
 # f(a) must be a local min or max and f(b) must be a local min or max
-# in range a -> b
-# n - (optional) number of samples
+# in range from a to b
+# a - start of integration range
+# b - end of integration range
+# fn - the function to integrate. It must be a single variable function
+# N - (optional) number of samples
 def approxIntegral(a,b,fn, N=10000000):
     lessThan = 0
     ymin = fn(a)
@@ -47,7 +50,8 @@ def approxPi2(N=100000000):
         add ^= True
     return 4*quarterPi
 
-# simmilar to approxPi2 uses related Leibniz-Madhava series
+# simmilar to approxPi2 uses related Leibniz-Madhava series. Only
+# applicable for calculating arctan of angles -1 to 1 (radians).
 # x - angle in radians
 # N - (optional) number of iterations
 def approxAtan(x, N=10000000):
@@ -63,6 +67,13 @@ def approxAtan(x, N=10000000):
         add ^= True
     return y
 
+# Computes the sum of the arctan of two angles.  The angles must not both
+# equal 1.  Function should provide a more accurate result than calculating
+# both arctans separately and adding.
+#
+# x0 - angle in radians
+# x1 - angle in radians
+# result - atan(x0) + atan(x1)
 def addAtan(x0,x1):
     if x0 == x0 == 1:
         raise ValueError("inputs cannot both equal 1")
