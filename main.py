@@ -33,7 +33,7 @@ def approxIntegral(a,b,fn, N=10000000):
         y = uniform(ymin,ymax)
         x = uniform(a,b)
         if fn(x) > y:
-            lessThan +=1
+            lessThanfx +=1
     p = lessThanfx / N # probability distribution
     constArea = ymin*(b-a) # region less than f(x) over a, b with 100% probability
     dynamicArea = (ymax-ymin)*(b-a)*p # area of unknown region calculated from p
@@ -91,6 +91,6 @@ def demo():
     print(f"Monte Carlo integration (4√(1-x²) approximation of π:", approxIntegral(0,1,lambda x: sqrt(1-x**2))*4)
     print(f"Leibniz approximation of π: {approxPi2()}")
     print(f"Leibniz-Madhava approximation of atan(.5): {approxAtan(.5)}")
-    print(f"atan(.99) + atan(.99) = {addAtan(.99,.99)}")
+    print(f"atan(.23607) + atan(.23607) ≈ atan(.5) = {addAtan(.23607,.23607)}")
 
 demo()
